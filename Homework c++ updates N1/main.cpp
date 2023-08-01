@@ -5,16 +5,23 @@
 int main()
 {
 	std::vector<int> vector = { 4,7,9,14,12 };
-	std::for_each(vector.begin(), vector.end(), [](int vector)
+	auto multiplicator = [](int num)
+	{
+		if (num % 2 != 0)
 		{
-			if (vector % 2 != 0)
-			{
-				std::cout << 3 * vector << " ";
-			}
-			else
-			{
-				std::cout << vector << " ";
-			}
-		});
+			return num*3;
+		}
+		else
+		{
+			return num;
+		}
+	};
+		
+	auto cout = [multiplicator](int num)
+	{
+		std::cout << multiplicator(num) << " ";
+	};
+		
+	std::for_each(vector.begin(), vector.end(), cout);
 	return 0;
 }
